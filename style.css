@@ -1,0 +1,33 @@
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.form {
+    background: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+input, textarea {
+    width: 80%;
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: orange;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.recipe {
+    background: white;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+}
