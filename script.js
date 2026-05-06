@@ -13,6 +13,9 @@ function addRecipe() {
 
     recipes.push(recipe);
     displayRecipes();
+    document.getElementById("title").value = "";
+document.getElementById("ingredients").value = "";
+document.getElementById("steps").value = "";
 }
 
 function displayRecipes() {
