@@ -100,3 +100,6 @@ function likeRecipe(index) {
 
     displayRecipes();
 }
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
