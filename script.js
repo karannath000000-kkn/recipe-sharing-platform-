@@ -13,6 +13,7 @@ function addRecipe() {
         ingredients,
         steps,
         image
+        likes:0
     };
 
     recipes.push(recipe);
@@ -28,14 +29,23 @@ function displayRecipes() {
     let list = document.getElementById("recipeList");
     list.innerHTML = "";
 
-    recipes.forEach((r) => {
+    recipes.forEach((r, index) => {
         list.innerHTML += `
             <div class="recipe">
                 <img src="${r.image}">
                 <h3>${r.title}</h3>
                 <p><b>Ingredients:</b> ${r.ingredients}</p>
                 <p><b>Steps:</b> ${r.steps}</p>
+                <button onclick="likeRecipe(${index})">
+                ❤️ Like (${r.likes})
+                </button>
             </div>
         `;
     });
+}
+displayRecipes();
+
+function likeRecipe(index) {
+    recipes[index].likes++;
+    displayRecipes();
 }
