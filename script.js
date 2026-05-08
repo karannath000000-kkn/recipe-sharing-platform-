@@ -21,7 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Recipes Array
+// Local Storage Recipes
 let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 
 // Add Recipe
@@ -47,10 +47,13 @@ async function addRecipe() {
         likes: 0
     };
 
+    // Add to array
     recipes.push(recipe);
+
+    // Save local storage
     localStorage.setItem("recipes", JSON.stringify(recipes));
 
-    // Firebase Save
+    // Save Firebase
     await addDoc(collection(db, "recipes"), recipe);
 
     displayRecipes();
@@ -141,9 +144,11 @@ function toggleDarkMode() {
     document.body.classList.toggle("dark");
 }
 
-// Make functions global
+// Global Functions
 window.addRecipe = addRecipe;
 window.searchRecipe = searchRecipe;
 window.likeRecipe = likeRecipe;
 window.toggleDarkMode = toggleDarkMode;
+
+// Load Recipes
 displayRecipes();
