@@ -1,10 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getFirestore,
   collection,
   addDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+// Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyAsVSo06yCsV1Y3EKsK8XaYTB910uJbaCg",
   authDomain: "recipe-sharing-platform-a08eb.firebaseapp.com",
@@ -15,10 +17,11 @@ const firebaseConfig = {
   measurementId: "G-6YL6THM6YR"
 };
 
+// Firebase Start
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-console.log("Firebase Connected ✅");
+// Recipes Array
 let recipes = [];
 
 // Add Recipe
@@ -46,17 +49,18 @@ async function addRecipe() {
 
     recipes.push(recipe);
 
-    // Firebase save
+    // Firebase Save
     await addDoc(collection(db, "recipes"), recipe);
 
     displayRecipes();
 
-    // Clear inputs
+    // Clear Input
     document.getElementById("title").value = "";
     document.getElementById("ingredients").value = "";
     document.getElementById("steps").value = "";
     document.getElementById("image").value = "";
 }
+
 // Display Recipes
 function displayRecipes() {
 
@@ -128,6 +132,14 @@ function likeRecipe(index) {
 
     displayRecipes();
 }
+
+// Dark Mode
 function toggleDarkMode() {
     document.body.classList.toggle("dark");
 }
+
+// Make functions global
+window.addRecipe = addRecipe;
+window.searchRecipe = searchRecipe;
+window.likeRecipe = likeRecipe;
+window.toggleDarkMode = toggleDarkMode;
