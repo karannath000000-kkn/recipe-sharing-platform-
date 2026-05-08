@@ -1,4 +1,10 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAsVSo06yCsV1Y3EKsK8XaYTB910uJbaCg",
@@ -11,12 +17,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 console.log("Firebase Connected ✅");
 let recipes = [];
 
 // Add Recipe
-function addRecipe() {
+async function addRecipe() {
 
     let title = document.getElementById("title").value;
     let ingredients = document.getElementById("ingredients").value;
@@ -34,6 +41,7 @@ function addRecipe() {
     };
 
     recipes.push(recipe);
+    await addDoc(collection(db, "recipes"), recipe);
 
     displayRecipes();
 
