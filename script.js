@@ -88,6 +88,9 @@ function displayRecipes() {
                 <button onclick="likeRecipe(${index})">
                     ❤️ Like (${r.likes})
                 </button>
+                <button onclick="deleteRecipe(${index})">
+                    🗑️ Delete
+                </button>
 
             </div>
         `;
@@ -138,6 +141,14 @@ function likeRecipe(index) {
 
     displayRecipes();
 }
+function deleteRecipe(index) {
+
+    recipes.splice(index, 1);
+
+    localStorage.setItem("recipes", JSON.stringify(recipes));
+
+    displayRecipes();
+}
 
 // Dark Mode
 function toggleDarkMode() {
@@ -148,6 +159,7 @@ function toggleDarkMode() {
 window.addRecipe = addRecipe;
 window.searchRecipe = searchRecipe;
 window.likeRecipe = likeRecipe;
+window.deleteRecipe = deleteRecipe;
 window.toggleDarkMode = toggleDarkMode;
 
 // Load Recipes
