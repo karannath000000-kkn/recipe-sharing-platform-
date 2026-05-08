@@ -22,7 +22,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Recipes Array
-let recipes = [];
+let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 
 // Add Recipe
 async function addRecipe() {
@@ -48,6 +48,7 @@ async function addRecipe() {
     };
 
     recipes.push(recipe);
+    localStorage.setItem("recipes", JSON.stringify(recipes));
 
     // Firebase Save
     await addDoc(collection(db, "recipes"), recipe);
@@ -130,6 +131,8 @@ function likeRecipe(index) {
 
     recipes[index].likes++;
 
+    localStorage.setItem("recipes", JSON.stringify(recipes));
+
     displayRecipes();
 }
 
@@ -143,3 +146,4 @@ window.addRecipe = addRecipe;
 window.searchRecipe = searchRecipe;
 window.likeRecipe = likeRecipe;
 window.toggleDarkMode = toggleDarkMode;
+displayRecipes();
