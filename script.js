@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getFirestore,
@@ -30,7 +29,12 @@ async function addRecipe() {
     let steps = document.getElementById("steps").value;
 
     let imageInput = document.getElementById("image");
-    let image = URL.createObjectURL(imageInput.files[0]);
+
+    let image = "";
+
+    if (imageInput.files.length > 0) {
+        image = URL.createObjectURL(imageInput.files[0]);
+    }
 
     let recipe = {
         title,
@@ -41,6 +45,8 @@ async function addRecipe() {
     };
 
     recipes.push(recipe);
+
+    // Firebase save
     await addDoc(collection(db, "recipes"), recipe);
 
     displayRecipes();
@@ -51,7 +57,6 @@ async function addRecipe() {
     document.getElementById("steps").value = "";
     document.getElementById("image").value = "";
 }
-
 // Display Recipes
 function displayRecipes() {
 
