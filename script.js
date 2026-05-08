@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import {
   getFirestore,
   collection,
-  addDoc
+  addDoc,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 // Firebase Config
@@ -163,4 +164,16 @@ window.deleteRecipe = deleteRecipe;
 window.toggleDarkMode = toggleDarkMode;
 
 // Load Recipes
-displayRecipes();
+async function loadRecipes() {
+
+    let querySnapshot = await getDocs(collection(db, "recipes"));
+
+    recipes = [];
+
+    querySnapshot.forEach((doc) => {
+        recipes.push(doc.data());
+    });
+
+    displayRecipes();
+}
+loadRecipes();
