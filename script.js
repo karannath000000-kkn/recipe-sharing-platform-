@@ -1,3 +1,18 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAsVSo06yCsV1Y3EKsK8XaYTB910uJbaCg",
+  authDomain: "recipe-sharing-platform-a08eb.firebaseapp.com",
+  projectId: "recipe-sharing-platform-a08eb",
+  storageBucket: "recipe-sharing-platform-a08eb.firebasestorage.app",
+  messagingSenderId: "349234964017",
+  appId: "1:349234964017:web:7baf93d3ac8e2615cd710",
+  measurementId: "G-6YL6THM6YR"
+};
+
+const app = initializeApp(firebaseConfig);
+
+console.log("Firebase Connected ✅");
 let recipes = [];
 
 // Add Recipe
