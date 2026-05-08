@@ -92,7 +92,9 @@ function displayRecipes() {
                 <button onclick="deleteRecipe(${index})">
                     🗑️ Delete
                 </button>
-
+               <button onclick="editRecipe(${index})">
+               ✏️ Edit
+               </button>
             </div>
         `;
     });
@@ -150,7 +152,35 @@ function deleteRecipe(index) {
 
     displayRecipes();
 }
+function editRecipe(index) {
 
+    let newTitle = prompt(
+        "Edit Recipe Title",
+        recipes[index].title
+    );
+
+    let newIngredients = prompt(
+        "Edit Ingredients",
+        recipes[index].ingredients
+    );
+
+    let newSteps = prompt(
+        "Edit Steps",
+        recipes[index].steps
+    );
+
+    recipes[index].title = newTitle;
+    recipes[index].ingredients = newIngredients;
+    recipes[index].steps = newSteps;
+
+    // Save updated data
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(recipes)
+    );
+
+    displayRecipes();
+}
 // Dark Mode
 function toggleDarkMode() {
     document.body.classList.toggle("dark");
@@ -161,6 +191,7 @@ window.addRecipe = addRecipe;
 window.searchRecipe = searchRecipe;
 window.likeRecipe = likeRecipe;
 window.deleteRecipe = deleteRecipe;
+window.editRecipe = editRecipe;
 window.toggleDarkMode = toggleDarkMode;
 
 // Load Recipes
