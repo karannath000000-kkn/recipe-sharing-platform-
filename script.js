@@ -94,16 +94,12 @@ function displayRecipes() {
                     ❤️ Like (${r.likes})
                 </button>
                 ${r.owner === currentUser ? `
+              <button onclick="deleteRecipe(${index})">    🗑️ Delete
+              </button>
 
-<button onclick="deleteRecipe(${index})">
-    🗑️ Delete
-</button>
-
-<button onclick="editRecipe(${index})">
-    ✏️ Edit
-</button>
-
-` : ""}
+              <button onclick="editRecipe(${index})">
+                ✏️ Edit
+              </button>
 
                 ` : ""}
             </div>
