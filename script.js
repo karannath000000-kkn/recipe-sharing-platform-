@@ -19,7 +19,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyAsVSo06yCsV1Y3EKsK8XaYTB010uJbaCg",
   authDomain: "recipe-sharing-platform-a08eb.firebaseapp.com",
   projectId: "recipe-sharing-platform-a08eb",
-  storageBucket: "recipe-sharing-platform-a08eb.firebasestorage.app",
+  storageBucket: "recipe-sharing-platform-a08eb.appspot.com",
   messagingSenderId: "349234964017",
   appId: "1:349234964017:web:78baf93d3ac8e2615cd710",
   measurementId: "G-6YL6THM6YR"
