@@ -28,6 +28,7 @@ const firebaseConfig = {
 // Firebase Start
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+let currentUser = null;
 const db = getFirestore(app);
 
 // Local Storage Recipes
@@ -48,6 +49,7 @@ async function addRecipe() {
         steps,
         image,
         likes: 0
+        owner: currentUser,
     };
 
     // Add to array
@@ -91,12 +93,15 @@ function displayRecipes() {
                 <button onclick="likeRecipe(${index})">
                     ❤️ Like (${r.likes})
                 </button>
-                <button onclick="deleteRecipe(${index})">
-                    🗑️ Delete
-                </button>
-               <button onclick="editRecipe(${index})">
-               ✏️ Edit
-               </button>
+                ${r.owner === currentUser ? `
+              <button onclick="deleteRecipe(${index})">    🗑️ Delete
+              </button>
+
+              <button onclick="editRecipe(${index})">
+                ✏️ Edit
+              </button>
+
+                ` : ""}
             </div>
         `;
     });
@@ -219,6 +224,7 @@ function signup() {
     createUserWithEmailAndPassword(auth, email, password)
 
     .then(() => {
+      currentUser = email;
         alert("Signup Successful 😎");
         document.getElementById("app").style.display = "block";
     })
@@ -236,6 +242,7 @@ function login() {
     signInWithEmailAndPassword(auth, email, password)
 
     .then(() => {
+      currentUser = email;
         alert("Login Successful 🔥");
         document.getElementById("app").style.display = "block";
     })
