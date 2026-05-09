@@ -220,6 +220,7 @@ function signup() {
 
     .then(() => {
         alert("Signup Successful 😎");
+        document.getElementById("app").style.display = "block";
     })
 
     .catch((error) => {
@@ -236,6 +237,7 @@ function login() {
 
     .then(() => {
         alert("Login Successful 🔥");
+        document.getElementById("app").style.display = "block";
     })
 
     .catch((error) => {
@@ -248,6 +250,7 @@ function logout() {
 
     .then(() => {
         alert("Logout Successful 👋");
+        document.getElementById("app").style.display = "none";
     })
 
     .catch((error) => {
