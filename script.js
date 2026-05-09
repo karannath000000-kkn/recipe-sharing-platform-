@@ -257,3 +257,7 @@ function logout() {
         alert(error.message);
     });
 }
+
+window.signup = signup;
+window.login = login;
+window.logout = logout;
