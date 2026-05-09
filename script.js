@@ -16,12 +16,12 @@ import {
 
 // Firebase Config
 const firebaseConfig = {
-  apiKey: "AIzaSyAsVSo06yCsV1Y3EKsK8XaYTB910uJbaCg",
+  apiKey: "AIzaSyAsVSo06yCsV1Y3EKsK8XaYTB010uJbaCg",
   authDomain: "recipe-sharing-platform-a08eb.firebaseapp.com",
   projectId: "recipe-sharing-platform-a08eb",
   storageBucket: "recipe-sharing-platform-a08eb.firebasestorage.app",
   messagingSenderId: "349234964017",
-  appId: "1:349234964017:web:7baf93d3ac8e2615cd710",
+  appId: "1:349234964017:web:78baf93d3ac8e2615cd710",
   measurementId: "G-6YL6THM6YR"
 };
 
@@ -257,7 +257,6 @@ function logout() {
         alert(error.message);
     });
 }
-
 window.signup = signup;
 window.login = login;
 window.logout = logout;
