@@ -1,3 +1,10 @@
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
@@ -20,6 +27,7 @@ const firebaseConfig = {
 
 // Firebase Start
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Local Storage Recipes
@@ -202,3 +210,47 @@ async function loadRecipes() {
     displayRecipes();
 }
 loadRecipes();
+function signup() {
+
+    let email = document.getElementById("email").value;
+
+    let password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+
+    .then(() => {
+        alert("Signup Successful 😎");
+    })
+
+    .catch((error) => {
+        alert(error.message);
+    });
+}
+function login() {
+
+    let email = document.getElementById("email").value;
+
+    let password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+
+    .then(() => {
+        alert("Login Successful 🔥");
+    })
+
+    .catch((error) => {
+        alert(error.message);
+    });
+}
+function logout() {
+
+    signOut(auth)
+
+    .then(() => {
+        alert("Logout Successful 👋");
+    })
+
+    .catch((error) => {
+        alert(error.message);
+    });
+}
