@@ -32,13 +32,7 @@ async function addRecipe() {
     let ingredients = document.getElementById("ingredients").value;
     let steps = document.getElementById("steps").value;
 
-    let imageInput = document.getElementById("image");
-
-    let image = "";
-
-    if (imageInput.files.length > 0) {
-        image = URL.createObjectURL(imageInput.files[0]);
-    }
+    let image = document.getElementById("image").value;
 
     let recipe = {
         title,
