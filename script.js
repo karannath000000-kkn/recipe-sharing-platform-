@@ -102,7 +102,6 @@ function displayRecipes() {
 ✏ Edit
 </button>
 
-` : ""}
             </div>
         `;
     });
