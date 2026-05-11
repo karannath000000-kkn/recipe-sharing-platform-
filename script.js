@@ -48,7 +48,7 @@ async function addRecipe() {
         ingredients,
         steps,
         image,
-        likes: 0
+        likes: 0,
         owner: currentUser,
     };
 
@@ -80,35 +80,31 @@ function displayRecipes() {
     recipes.forEach((r, index) => {
 
         list.innerHTML += `
-        
-        <div class="recipe">
+            <div class="recipe">
 
-            <img src="${r.image}">
+                <img src="${r.image}">
 
-            <h3>${r.title}</h3>
+                <h3>${r.title}</h3>
 
-            <p><b>Ingredients:</b> ${r.ingredients}</p>
+                <p><b>Ingredients:</b> ${r.ingredients}</p>
 
-            <p><b>Steps:</b> ${r.steps}</p>
+                <p><b>Steps:</b> ${r.steps}</p>
 
-            <button onclick="likeRecipe(${index})">
-                ❤️ Like (${r.likes})
-            </button>
+                <button onclick="likeRecipe(${index})">
+                    ❤️ Like (${r.likes})
+                </button>
+                ${r.owner === currentUser ? `
+              <button onclick="deleteRecipe(${index})">    🗑️ Delete
+              </button>
 
-            <button onclick="deleteRecipe(${index})">
-                🗑 Delete
-            </button>
+              <button onclick="editRecipe(${index})">
+                ✏️ Edit
+              </button>
 
-            <button onclick="editRecipe(${index})">
-                ✏ Edit
-            </button>
-
-        </div>
-
+                ` : ""}
+            </div>
         `;
-
     });
-
 }
 
 // Search Recipe
