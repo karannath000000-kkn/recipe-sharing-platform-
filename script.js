@@ -325,7 +325,10 @@ function favoriteRecipe(index) {
   recipes[index]
   .favorites
   .push(currentUser);
-
+  localStorage.setItem(
+    "recipes",
+    JSON.stringify(recipes)
+);
   displayRecipes();
   showSection("favorites");
 
