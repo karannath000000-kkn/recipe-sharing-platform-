@@ -42,7 +42,7 @@ const db = getFirestore(app);
 
 
 
-// Auto Login After Refresh
+// Auto Login
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
@@ -61,7 +61,7 @@ onAuthStateChanged(auth, (user) => {
 
 
 
-// Recipes Array
+// Recipes
 let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 
 
@@ -69,7 +69,8 @@ let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 // Add Recipe
 async function addRecipe() {
 
-    let title = document.getElementById("title").value;
+    let title =
+    document.getElementById("title").value;
 
     let ingredients =
     document.getElementById("ingredients").value;
@@ -93,6 +94,7 @@ async function addRecipe() {
         likes: 0,
 
         owner: currentUser,
+
         comments: [],
 
     };
@@ -153,27 +155,6 @@ function displayRecipes() {
             <button onclick="likeRecipe(${index})">
                 ❤️ Like (${r.likes})
             </button>
-            <div class="comments">
-
-            <input
-            type="text"
-            id="comment-${index}"
-            placeholder="Write comment..."
-            >
-
-            <button onclick="addComment(${index})">
-              💬 Comment
-           </button>
-
-          <div>
-
-           ${r.comments.map(c => `
-            <p>💬 ${c}</p>
-            `).join("")}
-
-        </div>
-
-</div>
 
             ${r.owner === currentUser ? `
 
@@ -186,6 +167,28 @@ function displayRecipes() {
             </button>
 
             ` : ""}
+
+            <div class="comments">
+
+                <input
+                    type="text"
+                    id="comment-${index}"
+                    placeholder="Write comment..."
+                >
+
+                <button onclick="addComment(${index})">
+                    💬 Comment
+                </button>
+
+                <div>
+
+                    ${r.comments.map(c => `
+                        <p>💬 ${c}</p>
+                    `).join("")}
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -301,6 +304,29 @@ function editRecipe(index) {
     recipes[index].ingredients = newIngredients;
 
     recipes[index].steps = newSteps;
+
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(recipes)
+    );
+
+    displayRecipes();
+}
+
+
+
+// Add Comment
+function addComment(index) {
+
+    let input = document.getElementById(
+        `comment-${index}`
+    );
+
+    let comment = input.value;
+
+    if(comment.trim() === "") return;
+
+    recipes[index].comments.push(comment);
 
     localStorage.setItem(
         "recipes",
@@ -436,25 +462,6 @@ function logout() {
 
 }
 
-function addComment(index) {
-
-    let input = document.getElementById(
-        `comment-${index}`
-    );
-
-    let comment = input.value;
-
-    if(comment.trim() === "") return;
-
-    recipes[index].comments.push(comment);
-
-    localStorage.setItem(
-        "recipes",
-        JSON.stringify(recipes)
-    );
-
-    displayRecipes();
-}
 
 
 // Global Functions
@@ -470,9 +477,10 @@ window.editRecipe = editRecipe;
 
 window.toggleDarkMode = toggleDarkMode;
 
+window.addComment = addComment;
+
 window.signup = signup;
 
 window.login = login;
 
 window.logout = logout;
-window.addComment = addComment;
