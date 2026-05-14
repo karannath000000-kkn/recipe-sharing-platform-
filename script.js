@@ -565,3 +565,55 @@ window.signup = signup;
 window.login = login;
 
 window.logout = logout;
+function showSection(section) {
+
+    document.getElementById("home-section").style.display = "none";
+    document.getElementById("favorites-section").style.display = "none";
+    document.getElementById("profile-section").style.display = "none";
+
+    if(section === "home") {
+        document.getElementById("home-section").style.display = "block";
+    }
+
+    if(section === "favorites") {
+
+        document.getElementById("favorites-section").style.display = "block";
+
+        let favoriteList =
+            document.getElementById("favoriteList");
+
+        favoriteList.innerHTML = "";
+
+        let favRecipes = recipes.filter(r =>
+            r.favorites &&
+            r.favorites.includes(currentUser)
+        );
+
+        favRecipes.forEach(r => {
+
+            favoriteList.innerHTML += `
+                <div class="recipe">
+                    <img src="${r.image}">
+                    <h3>${r.title}</h3>
+                </div>
+            `;
+        });
+    }
+
+    if(section === "profile") {
+
+        document.getElementById("profile-section").style.display = "block";
+
+        document.getElementById("profileEmail").innerText =
+            "Email: " + currentUser;
+
+        let myRecipes = recipes.filter(r =>
+            r.owner === currentUser
+        );
+
+        document.getElementById("recipeCount").innerText =
+            myRecipes.length;
+    }
+}
+
+window.showSection = showSection;
