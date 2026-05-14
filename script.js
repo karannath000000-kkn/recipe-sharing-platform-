@@ -41,7 +41,9 @@ const db = getFirestore(app);
 
 let currentUser = null;
 
-let recipes = [];
+let recipes =
+JSON.parse(localStorage.getItem("recipes"))
+|| [];
 
 
 
@@ -72,11 +74,17 @@ async function loadRecipes() {
   let querySnapshot =
   await getDocs(collection(db, "recipes"));
 
-  recipes = [];
+  recipes =
+JSON.parse(localStorage.getItem("recipes"))
+|| [];
 
   querySnapshot.forEach((doc) => {
 
     recipes.push(doc.data());
+    localStorage.setItem(
+    "recipes",
+    JSON.stringify(recipes)
+);
 
   });
 
@@ -328,7 +336,7 @@ function favoriteRecipe(index) {
   localStorage.setItem(
     "recipes",
     JSON.stringify(recipes)
-);
+  );
   displayRecipes();
   showSection("favorites");
 
