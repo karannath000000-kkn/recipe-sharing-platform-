@@ -6,7 +6,8 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
   getFirestore,
@@ -14,6 +15,8 @@ import {
   addDoc,
   getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
 
 // Firebase Config
 const firebaseConfig = {
@@ -26,9 +29,20 @@ const firebaseConfig = {
   measurementId: "G-6YL6THM6YR"
 };
 
+
+
 // Firebase Start
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
+
+let currentUser = null;
+
+const db = getFirestore(app);
+
+
+
+// Auto Login After Refresh
 onAuthStateChanged(auth, (user) => {
 
     if (user) {
@@ -44,67 +58,96 @@ onAuthStateChanged(auth, (user) => {
     }
 
 });
-let currentUser = null;
-const db = getFirestore(app);
 
-// Local Storage Recipes
+
+
+// Recipes Array
 let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+
+
 
 // Add Recipe
 async function addRecipe() {
 
     let title = document.getElementById("title").value;
-    let ingredients = document.getElementById("ingredients").value;
-    let steps = document.getElementById("steps").value;
 
-    let image = document.getElementById("image").value;
+    let ingredients =
+    document.getElementById("ingredients").value;
+
+    let steps =
+    document.getElementById("steps").value;
+
+    let image =
+    document.getElementById("image").value;
 
     let recipe = {
+
         title,
+
         ingredients,
+
         steps,
+
         image,
+
         likes: 0,
+
         owner: currentUser,
+
     };
 
-    // Add to array
     recipes.push(recipe);
 
-    // Save local storage
-    localStorage.setItem("recipes", JSON.stringify(recipes));
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(recipes)
+    );
 
-    // Save Firebase
-    await addDoc(collection(db, "recipes"), recipe);
+    await addDoc(
+        collection(db, "recipes"),
+        recipe
+    );
 
     displayRecipes();
 
-    // Clear Input
     document.getElementById("title").value = "";
+
     document.getElementById("ingredients").value = "";
+
     document.getElementById("steps").value = "";
+
     document.getElementById("image").value = "";
 }
+
+
 
 // Display Recipes
 function displayRecipes() {
 
-    let list = document.getElementById("recipeList");
+    let list =
+    document.getElementById("recipeList");
 
     list.innerHTML = "";
 
     recipes.forEach((r, index) => {
 
         list.innerHTML += `
+
         <div class="recipe">
 
             <img src="${r.image}">
 
             <h3>${r.title}</h3>
 
-            <p><b>Ingredients:</b> ${r.ingredients}</p>
+            <p>
+            <b>Ingredients:</b>
+            ${r.ingredients}
+            </p>
 
-            <p><b>Steps:</b> ${r.steps}</p>
+            <p>
+            <b>Steps:</b>
+            ${r.steps}
+            </p>
 
             <button onclick="likeRecipe(${index})">
                 ❤️ Like (${r.likes})
@@ -123,64 +166,97 @@ function displayRecipes() {
             ` : ""}
 
         </div>
+
         `;
 
     });
 
 }
 
+
+
 // Search Recipe
 function searchRecipe() {
 
-    let value = document.getElementById("search").value.toLowerCase();
+    let value =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
 
     let filtered = recipes.filter(r =>
         r.title.toLowerCase().includes(value)
     );
 
-    let list = document.getElementById("recipeList");
+    let list =
+    document.getElementById("recipeList");
 
     list.innerHTML = "";
 
     filtered.forEach((r, index) => {
 
         list.innerHTML += `
-            <div class="recipe">
 
-                <img src="${r.image}">
+        <div class="recipe">
 
-                <h3>${r.title}</h3>
+            <img src="${r.image}">
 
-                <p><b>Ingredients:</b> ${r.ingredients}</p>
+            <h3>${r.title}</h3>
 
-                <p><b>Steps:</b> ${r.steps}</p>
+            <p>
+            <b>Ingredients:</b>
+            ${r.ingredients}
+            </p>
 
-                <button onclick="likeRecipe(${index})">
-                    ❤️ Like (${r.likes})
-                </button>
+            <p>
+            <b>Steps:</b>
+            ${r.steps}
+            </p>
 
-            </div>
+            <button onclick="likeRecipe(${index})">
+                ❤️ Like (${r.likes})
+            </button>
+
+        </div>
+
         `;
+
     });
+
 }
+
+
 
 // Like Recipe
 function likeRecipe(index) {
 
     recipes[index].likes++;
 
-    localStorage.setItem("recipes", JSON.stringify(recipes));
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(recipes)
+    );
 
     displayRecipes();
 }
+
+
+
+// Delete Recipe
 function deleteRecipe(index) {
 
     recipes.splice(index, 1);
 
-    localStorage.setItem("recipes", JSON.stringify(recipes));
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(recipes)
+    );
 
     displayRecipes();
 }
+
+
+
+// Edit Recipe
 function editRecipe(index) {
 
     let newTitle = prompt(
@@ -199,10 +275,11 @@ function editRecipe(index) {
     );
 
     recipes[index].title = newTitle;
+
     recipes[index].ingredients = newIngredients;
+
     recipes[index].steps = newSteps;
 
-    // Save updated data
     localStorage.setItem(
         "recipes",
         JSON.stringify(recipes)
@@ -210,82 +287,150 @@ function editRecipe(index) {
 
     displayRecipes();
 }
+
+
+
 // Dark Mode
 function toggleDarkMode() {
+
     document.body.classList.toggle("dark");
+
 }
 
-// Global Functions
-window.addRecipe = addRecipe;
-window.searchRecipe = searchRecipe;
-window.likeRecipe = likeRecipe;
-window.deleteRecipe = deleteRecipe;
-window.editRecipe = editRecipe;
-window.toggleDarkMode = toggleDarkMode;
+
 
 // Load Recipes
 async function loadRecipes() {
 
-    let querySnapshot = await getDocs(collection(db, "recipes"));
+    let querySnapshot =
+    await getDocs(collection(db, "recipes"));
 
     recipes = [];
 
     querySnapshot.forEach((doc) => {
+
         recipes.push(doc.data());
+
     });
 
     displayRecipes();
 }
+
 loadRecipes();
+
+
+
+// Signup
 function signup() {
 
-    let email = document.getElementById("email").value;
+    let email =
+    document.getElementById("email").value;
 
-    let password = document.getElementById("password").value;
+    let password =
+    document.getElementById("password").value;
 
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+    )
 
     .then(() => {
-      currentUser = auth.currentUser.email;
+
+        currentUser = auth.currentUser.email;
+
         alert("Signup Successful 😎");
-        document.getElementById("app").style.display = "block";
+
+        document.getElementById("app")
+        .style.display = "block";
+
     })
 
     .catch((error) => {
+
         alert(error.message);
+
     });
+
 }
+
+
+
+// Login
 function login() {
 
-    let email = document.getElementById("email").value;
+    let email =
+    document.getElementById("email").value;
 
-    let password = document.getElementById("password").value;
+    let password =
+    document.getElementById("password").value;
 
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+    )
 
     .then(() => {
-      currentUser = auth.currentUser.email;
+
+        currentUser = auth.currentUser.email;
+
         alert("Login Successful 🔥");
-        document.getElementById("app").style.display = "block";
+
+        document.getElementById("app")
+        .style.display = "block";
+
     })
 
     .catch((error) => {
+
         alert(error.message);
+
     });
+
 }
+
+
+
+// Logout
 function logout() {
 
     signOut(auth)
 
     .then(() => {
+
         alert("Logout Successful 👋");
-        document.getElementById("app").style.display = "none";
+
+        document.getElementById("app")
+        .style.display = "none";
+
     })
 
     .catch((error) => {
+
         alert(error.message);
+
     });
+
 }
+
+
+
+// Global Functions
+window.addRecipe = addRecipe;
+
+window.searchRecipe = searchRecipe;
+
+window.likeRecipe = likeRecipe;
+
+window.deleteRecipe = deleteRecipe;
+
+window.editRecipe = editRecipe;
+
+window.toggleDarkMode = toggleDarkMode;
+
 window.signup = signup;
+
 window.login = login;
+
 window.logout = logout;
