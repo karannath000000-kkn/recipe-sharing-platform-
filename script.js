@@ -105,8 +105,31 @@ async function addRecipe() {
   let steps =
   document.getElementById("steps").value;
 
-  let image =
-  document.getElementById("image").value;
+  let file =
+document.getElementById("imageFile").files[0];
+
+if (!file) {
+
+    alert("Select Image");
+
+    return;
+}
+
+let formData = new FormData();
+
+formData.append("image", file);
+
+let response = await fetch(
+    "https://api.imgbb.com/1/upload?key=ab86b02af7b39f7bbc46857602fb83f7",
+    {
+        method: "POST",
+        body: formData
+    }
+);
+
+let data = await response.json();
+
+let image = data.data.url;
 
   let recipe = {
 
