@@ -29,6 +29,21 @@ const firebaseConfig = {
 // Firebase Start
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+        currentUser = user.email;
+
+        document.getElementById("app").style.display = "block";
+
+    } else {
+
+        document.getElementById("app").style.display = "none";
+
+    }
+
+});
 let currentUser = null;
 const db = getFirestore(app);
 
