@@ -93,6 +93,7 @@ async function addRecipe() {
         likes: 0,
 
         owner: currentUser,
+        comments: [],
 
     };
 
@@ -152,6 +153,27 @@ function displayRecipes() {
             <button onclick="likeRecipe(${index})">
                 ❤️ Like (${r.likes})
             </button>
+            <div class="comments">
+
+            <input
+            type="text"
+            id="comment-${index}"
+            placeholder="Write comment..."
+            >
+
+            <button onclick="addComment(${index})">
+              💬 Comment
+           </button>
+
+          <div>
+
+           ${r.comments.map(c => `
+            <p>💬 ${c}</p>
+            `).join("")}
+
+        </div>
+
+</div>
 
             ${r.owner === currentUser ? `
 
@@ -414,6 +436,25 @@ function logout() {
 
 }
 
+function addComment(index) {
+
+    let input = document.getElementById(
+        `comment-${index}`
+    );
+
+    let comment = input.value;
+
+    if(comment.trim() === "") return;
+
+    recipes[index].comments.push(comment);
+
+    localStorage.setItem(
+        "recipes",
+        JSON.stringify(recipes)
+    );
+
+    displayRecipes();
+}
 
 
 // Global Functions
@@ -434,3 +475,4 @@ window.signup = signup;
 window.login = login;
 
 window.logout = logout;
+window.addComment = addComment;
