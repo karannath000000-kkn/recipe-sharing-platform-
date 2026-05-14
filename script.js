@@ -230,7 +230,7 @@ function signup() {
     createUserWithEmailAndPassword(auth, email, password)
 
     .then(() => {
-      currentUser = email;
+      currentUser = auth.currentUser.email;
         alert("Signup Successful 😎");
         document.getElementById("app").style.display = "block";
     })
@@ -248,7 +248,7 @@ function login() {
     signInWithEmailAndPassword(auth, email, password)
 
     .then(() => {
-      currentUser = email;
+      currentUser = auth.currentUser.email;
         alert("Login Successful 🔥");
         document.getElementById("app").style.display = "block";
     })
