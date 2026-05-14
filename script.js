@@ -327,6 +327,7 @@ function favoriteRecipe(index) {
   .push(currentUser);
 
   displayRecipes();
+  showSection("favorites");
 
 }
 
