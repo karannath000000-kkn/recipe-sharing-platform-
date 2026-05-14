@@ -16,25 +16,41 @@
 
 <body>
 
-<div class="auth-box">
+<div class="auth-container">
 
-    <h2>Login /Signup</h2>
+    <div class="auth-box">
 
-    <input type="email" id="email" placeholder="Enter Email">
+        <h1>🍲 Recipe Hub</h1>
 
-    <input type="password" id="password" placeholder="Enter Password">
+        <p class="subtitle">
+            Share your favorite recipes 😎
+        </p>
 
-    <button onclick="signup()">
-        Sign Up
-    </button>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter Email"
+        >
 
-    <button onclick="login()">
-        Login
-    </button>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+        >
 
-    <button onclick="logout()">
-        Logout
-    </button>
+        <button class="signup-btn" onclick="signup()">
+            Sign Up
+        </button>
+
+        <button class="login-btn" onclick="login()">
+            Login
+        </button>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
 
 </div>
     <div id="app" style="display:none;">
