@@ -95,6 +95,9 @@ JSON.parse(localStorage.getItem("recipes"))
 
 // ADD RECIPE
 async function addRecipe() {
+  if(!checkProfileComplete()) {
+    return;
+}
 
   let title =
   document.getElementById("title").value;
@@ -600,6 +603,8 @@ window.signup = signup;
 window.login = login;
 
 window.logout = logout;
+window.saveProfile = saveProfile;
+
 function showSection(section) {
 
     document.getElementById("home-section").style.display = "none";
@@ -652,3 +657,118 @@ function showSection(section) {
 }
 
 window.showSection = showSection;
+// USER PROFILE
+let userProfile = JSON.parse(
+    localStorage.getItem("userProfile")
+) || {};
+
+
+// SAVE PROFILE
+async function saveProfile() {
+
+    let username =
+    document.getElementById("username").value;
+
+    let gmail =
+    document.getElementById("gmail").value;
+
+    let gender =
+    document.getElementById("gender").value;
+
+    let country =
+    document.getElementById("country").value;
+
+    let file =
+    document.getElementById("profileImage").files[0];
+
+    if(
+        !username ||
+        !gmail ||
+        !gender ||
+        !country ||
+        !file
+    ) {
+        alert("Complete Profile First 😎");
+        return;
+    }
+
+    let formData = new FormData();
+
+    formData.append("image", file);
+
+    let response = await fetch(
+        "https://api.imgbb.com/1/upload?key=ab86b02af7b39f7bbc46857602fb83f7",
+        {
+            method: "POST",
+            body: formData
+        }
+    );
+
+    let data = await response.json();
+
+    let imageUrl = data.data.url;
+
+    userProfile = {
+        username,
+        gmail,
+        gender,
+        country,
+        imageUrl
+    };
+
+    localStorage.setItem(
+        "userProfile",
+        JSON.stringify(userProfile)
+    );
+
+    loadProfile();
+
+    alert("Profile Saved 😎🔥");
+}
+
+
+// LOAD PROFILE
+function loadProfile() {
+
+    if(userProfile.username) {
+
+        document.getElementById(
+            "profilePreview"
+        ).src = userProfile.imageUrl;
+
+        document.getElementById(
+            "showUsername"
+        ).innerText = userProfile.username;
+
+        document.getElementById(
+            "showEmail"
+        ).innerText = "📧 " + userProfile.gmail;
+
+        document.getElementById(
+            "showGender"
+        ).innerText = "🚻 " + userProfile.gender;
+
+        document.getElementById(
+            "showCountry"
+        ).innerText = "🌍 " + userProfile.country;
+
+    }
+}
+
+loadProfile();
+
+
+// COMPULSORY PROFILE CHECK
+function checkProfileComplete() {
+
+    if(!userProfile.username) {
+
+        showSection("profile");
+
+        alert("Complete Your Profile First 😎");
+
+        return false;
+    }
+
+    return true;
+}
