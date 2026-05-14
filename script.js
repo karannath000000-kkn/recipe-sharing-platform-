@@ -45,7 +45,7 @@ let recipes = [];
 
 
 
-// AUTO LOGIN AFTER REFRESH
+// AUTO LOGIN
 onAuthStateChanged(auth, (user) => {
 
   if (user) {
@@ -114,7 +114,13 @@ async function addRecipe() {
 
     owner: currentUser,
 
-    comments: []
+    comments: [],
+
+    favorites: [],
+
+    rating: 0,
+
+    totalRatings: 0
 
   };
 
@@ -169,6 +175,28 @@ function displayRecipes() {
 
       <button onclick="likeRecipe(${index})">
         ❤️ Like (${r.likes})
+      </button>
+
+      <button onclick="favoriteRecipe(${index})">
+        ❤️ Favorite (${(r.favorites || []).length})
+      </button>
+
+      <br><br>
+
+      ⭐ Rating: ${r.rating || 0}/5
+
+      <br><br>
+
+      <select id="rating-${index}">
+        <option value="1">1 ⭐</option>
+        <option value="2">2 ⭐</option>
+        <option value="3">3 ⭐</option>
+        <option value="4">4 ⭐</option>
+        <option value="5">5 ⭐</option>
+      </select>
+
+      <button onclick="rateRecipe(${index})">
+        ⭐ Rate
       </button>
 
       ${r.owner === currentUser ? `
@@ -232,7 +260,7 @@ function searchRecipe() {
 
   list.innerHTML = "";
 
-  filtered.forEach((r, index) => {
+  filtered.forEach((r) => {
 
     list.innerHTML += `
 
@@ -266,6 +294,72 @@ function searchRecipe() {
 function likeRecipe(index) {
 
   recipes[index].likes++;
+
+  displayRecipes();
+
+}
+
+
+
+// FAVORITE RECIPE
+function favoriteRecipe(index) {
+
+  if(!recipes[index].favorites) {
+
+    recipes[index].favorites = [];
+
+  }
+
+  if(
+    recipes[index]
+    .favorites
+    .includes(currentUser)
+  ) {
+
+    alert("Already Favorited ❤️");
+
+    return;
+
+  }
+
+  recipes[index]
+  .favorites
+  .push(currentUser);
+
+  displayRecipes();
+
+}
+
+
+
+// RATE RECIPE
+function rateRecipe(index) {
+
+  let rating = parseInt(
+
+    document.getElementById(
+      `rating-${index}`
+    ).value
+
+  );
+
+  let oldRating =
+  recipes[index].rating || 0;
+
+  let totalRatings =
+  recipes[index].totalRatings || 0;
+
+  let newTotal =
+  oldRating * totalRatings + rating;
+
+  totalRatings++;
+
+  recipes[index].totalRatings =
+  totalRatings;
+
+  recipes[index].rating =
+  (newTotal / totalRatings)
+  .toFixed(1);
 
   displayRecipes();
 
@@ -453,6 +547,10 @@ window.addRecipe = addRecipe;
 window.searchRecipe = searchRecipe;
 
 window.likeRecipe = likeRecipe;
+
+window.favoriteRecipe = favoriteRecipe;
+
+window.rateRecipe = rateRecipe;
 
 window.deleteRecipe = deleteRecipe;
 
