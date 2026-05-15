@@ -55,12 +55,18 @@ onAuthStateChanged(auth, (user) => {
     currentUser = user.email;
 
     document.getElementById("app").style.display = "block";
+    document.getElementById(
+    "authPage"
+).style.display = "none";
 
     loadRecipes();
 
   } else {
 
     document.getElementById("app").style.display = "none";
+    document.getElementById(
+    "authPage"
+).style.display = "flex";
 
   }
 
