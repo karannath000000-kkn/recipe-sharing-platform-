@@ -613,12 +613,18 @@ window.saveProfile = saveProfile;
 window.editProfile = editProfile;
 
 function showSection(section) {
+  document.getElementById(
+    "recipeForm"
+).style.display = "none";
 
     document.getElementById("home-section").style.display = "none";
     document.getElementById("favorites-section").style.display = "none";
     document.getElementById("profile-section").style.display = "none";
 
     if(section === "home") {
+      document.getElementById(
+    "recipeForm"
+).style.display = "block";
         document.getElementById("home-section").style.display = "block";
     }
 
