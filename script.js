@@ -610,6 +610,7 @@ window.login = login;
 
 window.logout = logout;
 window.saveProfile = saveProfile;
+window.editProfile = editProfile;
 
 function showSection(section) {
 
@@ -737,6 +738,13 @@ async function saveProfile() {
 function loadProfile() {
 
     if(userProfile.username) {
+      document.getElementById(
+    "profileForm"
+).style.display = "none";
+
+document.getElementById(
+    "editProfileBtn"
+).style.display = "block";
 
         document.getElementById(
             "profilePreview"
@@ -762,6 +770,16 @@ function loadProfile() {
 }
 
 loadProfile();
+function editProfile() {
+
+    document.getElementById(
+        "profileForm"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "editProfileBtn"
+    ).style.display = "none";
+}
 
 
 // COMPULSORY PROFILE CHECK
