@@ -149,6 +149,7 @@ let image = data.data.url;
     steps,
 
     image,
+    category: document.getElementById("category").value,
 
     likes: 0,
 
@@ -202,6 +203,9 @@ function displayRecipes() {
       <img src="${r.image}">
 
       <h3>${r.title}</h3>
+      <p><span class="category-badge ${r.category}">
+${r.category}
+</span></p>
 
       <p>
       <b>Ingredients:</b>
@@ -292,7 +296,13 @@ function searchRecipe() {
   .toLowerCase();
 
   let filtered = recipes.filter(r =>
+
     r.title.toLowerCase().includes(value)
+
+    ||
+
+    r.category.toLowerCase().includes(value)
+
   );
 
   let list =
@@ -311,6 +321,12 @@ function searchRecipe() {
       <h3>${r.title}</h3>
 
       <p>
+     <span class="category-badge ${r.category}">
+${r.category}
+</span>
+      </p>
+
+      <p>
       <b>Ingredients:</b>
       ${r.ingredients}
       </p>
@@ -327,7 +343,6 @@ function searchRecipe() {
   });
 
 }
-
 
 
 // LIKE RECIPE
@@ -583,6 +598,60 @@ function logout() {
 
 }
 
+function filterRecipes(category) {
+
+    let filteredRecipes;
+
+    if(category === "All") {
+
+        filteredRecipes = recipes;
+
+    } else {
+
+        filteredRecipes = recipes.filter(r =>
+            r.category === category
+        );
+
+    }
+
+    let list =
+    document.getElementById("recipeList");
+
+    list.innerHTML = "";
+
+    filteredRecipes.forEach((r, index) => {
+
+        list.innerHTML += `
+
+        <div class="recipe">
+
+            <img src="${r.image}">
+
+            <h3>${r.title}</h3>
+
+            <p>
+            <span class="category-badge ${r.category}">
+${r.category}
+</span>
+            </p>
+
+            <p>
+            <b>Ingredients:</b>
+            ${r.ingredients}
+            </p>
+
+            <p>
+            <b>Steps:</b>
+            ${r.steps}
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+}
 
 
 // GLOBAL FUNCTIONS
@@ -611,6 +680,7 @@ window.login = login;
 window.logout = logout;
 window.saveProfile = saveProfile;
 window.editProfile = editProfile;
+window.filterRecipes = filterRecipes;
 
 function showSection(section) {
   document.getElementById(
