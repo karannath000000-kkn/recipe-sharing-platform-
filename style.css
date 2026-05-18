@@ -401,3 +401,14 @@ body {
     cursor:pointer;
 
 }
+#profile-section{
+
+    padding-bottom:100px;
+
+}
+
+.profile-logout-btn{
+
+    display:block !important;
+
+}
