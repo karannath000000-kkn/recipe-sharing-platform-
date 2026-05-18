@@ -80,9 +80,7 @@ async function loadRecipes() {
   let querySnapshot =
   await getDocs(collection(db, "recipes"));
 
-  recipes =
-JSON.parse(localStorage.getItem("recipes"))
-|| [];
+  recipes = [];
 
   querySnapshot.forEach((doc) => {
 
