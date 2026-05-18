@@ -40,6 +40,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 let currentUser = null;
+const adminEmail = "rahul@gmail.com";
 
 let recipes =
 JSON.parse(localStorage.getItem("recipes"))
@@ -241,7 +242,7 @@ ${r.category}
         ⭐ Rate
       </button>
 
-      ${r.owner === currentUser ? `
+      ${r.owner === currentUser || currentUser === adminEmail ? `
 
       <button onclick="deleteRecipe(${index})">
         🗑️ Delete
