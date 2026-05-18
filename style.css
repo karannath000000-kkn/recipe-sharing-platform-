@@ -261,3 +261,116 @@ body {
 .Dessert {
     background: #9c27b0;
 }
+.auth-container{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:#f5f5f5;
+
+}
+
+.phone-frame{
+
+    width:350px;
+    background:white;
+    border-radius:40px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    position:relative;
+
+}
+
+.top-section{
+
+    background:linear-gradient(
+        135deg,
+        #ff0057,
+        #ff4d6d
+    );
+
+    padding:30px 20px 80px;
+    text-align:center;
+    border-bottom-left-radius:40px;
+    border-bottom-right-radius:40px;
+
+}
+
+.food-image{
+
+    width:180px;
+    border-radius:25px;
+    margin-bottom:20px;
+
+}
+
+.auth-tabs{
+
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+
+}
+
+.active-tab{
+
+    border-bottom:3px solid white;
+    padding-bottom:5px;
+
+}
+
+.auth-card{
+
+    background:white;
+    margin:-50px 20px 20px;
+    padding:30px 20px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+}
+
+.auth-card input{
+
+    width:100%;
+    padding:15px;
+    margin-bottom:20px;
+    border:none;
+    border-radius:30px;
+    background:#f2f2f2;
+    font-size:16px;
+
+}
+
+.forgot{
+
+    text-align:right;
+    color:gray;
+    margin-bottom:30px;
+    cursor:pointer;
+
+}
+
+.modern-login-btn,
+.modern-signup-btn{
+
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(
+        135deg,
+        #ff0057,
+        #ff4d6d
+    );
+
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:15px;
+    cursor:pointer;
+
+}
