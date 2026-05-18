@@ -18,37 +18,63 @@
 
 <div class="auth-container" id="authPage">
 
-    <div class="auth-box">
+    <div class="phone-frame">
 
-        <h1>🍲 Recipe Hub</h1>
+        <div class="top-section">
 
-        <p class="subtitle">
-            Share your favorite recipes 😎
-        </p>
+            <img
+            src="https://i.ibb.co/6R5LxkZ/food.png"
+            class="food-image">
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter Email"
-        >
+            <div class="auth-tabs">
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter Password"
-        >
+                <span class="active-tab">
+                    Login
+                </span>
 
-        <button class="signup-btn" onclick="signup()">
-            Sign Up
-        </button>
+                <span>
+                    Signup
+                </span>
 
-        <button class="login-btn" onclick="login()">
-            Login
-        </button>
+            </div>
 
-        <button class="logout-btn" onclick="logout()">
-            Logout
-        </button>
+        </div>
+
+        <div class="auth-card">
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter Email"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+            >
+
+            <p class="forgot">
+                Forgot password?
+            </p>
+
+            <button
+            class="modern-login-btn"
+            onclick="login()">
+
+                Login
+
+            </button>
+
+            <button
+            class="modern-signup-btn"
+            onclick="signup()">
+
+                Signup
+
+            </button>
+
+        </div>
 
     </div>
 
