@@ -374,3 +374,30 @@ body {
     cursor:pointer;
 
 }
+.profile-logout-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:20px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+        135deg,
+        #ff0057,
+        #ff4d6d
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
