@@ -87,7 +87,10 @@ async function loadRecipes() {
 
   querySnapshot.forEach((doc) => {
 
-    recipes.push(doc.data());
+    recipes.push({
+    id: doc.id,
+    ...doc.data()
+});
     localStorage.setItem(
     "recipes",
     JSON.stringify(recipes)
@@ -428,11 +431,17 @@ function rateRecipe(index) {
 
 
 // DELETE RECIPE
-function deleteRecipe(index) {
+async function deleteRecipe(index) {
 
-  recipes.splice(index, 1);
+    let recipeId = recipes[index].id;
 
-  displayRecipes();
+    await deleteDoc(
+        doc(db, "recipes", recipeId)
+    );
+
+    recipes.splice(index, 1);
+
+    displayRecipes();
 
 }
 
