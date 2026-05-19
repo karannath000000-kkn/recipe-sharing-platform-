@@ -79,65 +79,151 @@
     </div>
 
 </div>
-    <div id="app" style="display:none;">
-      <div class="bottom-nav">
+<div id="app" style="display:none;">
+    <div class="premium-home">
 
-    <button onclick="showSection('home')">
-        🏠 Home
-    </button>
+    <!-- TOP MENU -->
+    <div class="premium-navbar">
+<div class="menu-logo">
 
-    <button onclick="showSection('favorites')">
-        ❤️ Favorites
-    </button>
+    <div
+    class="menu-icon"
+    onclick="toggleMenu()">
 
-    <button onclick="showSection('profile')">
-        👤 Profile
-    </button>
+        ☰
+
+    </div>
+
+    <div
+    class="dropdown-menu"
+    id="dropdownMenu">
+
+        <button onclick="showSection('profile')">
+            👤 Profile
+        </button>
+
+        <button onclick="showSection('favorites')">
+            ❤️ Favorites
+        </button>
+
+        <button onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+
+        <button onclick="logout()">
+            🚪 Logout
+        </button>
+
+    </div>
 
 </div>
-    <h1>🍲 Recipe Sharing Website</h1>
+
+        <div class="nav-links">
+
+            <button onclick="showSection('profile')">
+                Profile
+            </button>
+
+            <button onclick="filterRecipes('Breakfast')">
+                Breakfast
+            </button>
+
+            <button onclick="filterRecipes('Lunch')">
+                Lunch
+            </button>
+
+            <button onclick="filterRecipes('Dinner')">
+                Dinner
+            </button>
+
+            <button onclick="filterRecipes('Snacks')">
+                Snacks
+            </button>
+
+            <button onclick="filterRecipes('Dessert')">
+                Dessert
+            </button>
+
+        </div>
+
+        <div class="search-icon">
+            🔍
+        </div>
+
+    </div>
+
+    <!-- HERO -->
+    <div class="premium-hero">
+
+        <div class="premium-left">
+
+            <p class="chef-title">
+                CHEF'S SPECIAL
+            </p>
+
+            <h1>
+                Freshness <br>
+                in every bite
+            </h1>
+
+            <div class="premium-buttons">
+
+                <button
+                class="view-btn"
+                onclick="showSection('home')">
+
+                    View recipe
+
+                </button>
+
+                <button
+                class="favorite-btn"
+                onclick="showSection('favorites')">
+
+                    Favorite recipes
+
+                </button>
+
+            </div>
+            <button
+class="add-btn"
+onclick="showSection('addRecipe')">
+
+    Add Recipe
+
+</button>
+
+            <button
+            class="add-btn"
+            onclick="showSection('home')">
+
+                Add recipe
+
+            </button>
+
+        </div>
+
+        <div class="premium-right">
+
+            <img
+            src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop">
+
+        </div>
+
 
     <!-- Dark Mode Button -->
-    <button onclick="toggleDarkMode()">
-        🌙 Dark Mode
-    </button>
 
     <!-- Search Bar -->
-    <input
-        type="text"
-        id="search"
-        placeholder="🔍 Search recipe..."
-        onkeyup="searchRecipe()"
-    >
-<div class="category-filters">
 
-<button onclick="filterRecipes('All')">
-All
-</button>
 
-<button onclick="filterRecipes('Breakfast')">
-Breakfast
-</button>
 
-<button onclick="filterRecipes('Lunch')">
-Lunch
-</button>
-
-<button onclick="filterRecipes('Dinner')">
-Dinner
-</button>
-
-<button onclick="filterRecipes('Snacks')">
-Snacks
-</button>
-
-<button onclick="filterRecipes('Dessert')">
-Dessert
-</button>
 
 </div>
     <!-- Form -->
-    <div class="form" id="recipeForm">
+    <div
+class="form"
+id="recipeForm"
+style="display:none;">
 
         <input
             type="text"
@@ -182,6 +268,16 @@ Dessert
 
     <!-- Recipe List -->
     <div id="home-section">
+      <div class="recipe-search">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search recipe..."
+        onkeyup="searchRecipe()"
+    >
+
+</div>
     <div id="recipeList"></div>
 </div>
 
