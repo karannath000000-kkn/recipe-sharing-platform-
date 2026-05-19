@@ -696,6 +696,9 @@ function showSection(section) {
   document.getElementById(
     "recipeForm"
 ).style.display = "none";
+document.getElementById(
+    "home-section"
+).style.display = "none";
 
     document.getElementById("home-section").style.display = "none";
     document.getElementById("favorites-section").style.display = "none";
@@ -734,6 +737,13 @@ function showSection(section) {
     }
 
     if(section === "profile") {
+      if(section === "addRecipe") {
+
+    document.getElementById(
+        "recipeForm"
+    ).style.display = "block";
+
+}
 
         document.getElementById("profile-section").style.display = "block";
 
@@ -750,6 +760,26 @@ function showSection(section) {
 }
 
 window.showSection = showSection;
+function toggleMenu() {
+
+    let menu =
+    document.getElementById(
+        "dropdownMenu"
+    );
+
+    if(menu.style.display === "flex") {
+
+        menu.style.display = "none";
+
+    } else {
+
+        menu.style.display = "flex";
+
+    }
+
+}
+
+window.toggleMenu = toggleMenu;
 // USER PROFILE
 let userProfile = JSON.parse(
     localStorage.getItem("userProfile")
