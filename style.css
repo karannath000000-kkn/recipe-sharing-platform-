@@ -413,3 +413,478 @@ body {
     display:block !important;
 
 }
+.hero-section{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:40px;
+
+    background:white;
+
+    border-radius:40px;
+
+    margin:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+}
+
+.hero-left{
+
+    width:50%;
+
+}
+
+.chef-text{
+
+    color:red;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+}
+
+.hero-left h1{
+
+    font-size:60px;
+
+    margin:20px 0;
+
+    line-height:1.1;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+.hero-buttons button{
+
+    padding:15px 25px;
+
+    border-radius:15px;
+
+    border:none;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.hero-buttons button:first-child{
+
+    background:black;
+
+    color:white;
+
+}
+
+.hero-buttons button:last-child{
+
+    background:white;
+
+    border:2px solid black;
+
+}
+
+.add-recipe-btn{
+
+    background:red;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 35px;
+
+    border-radius:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.hero-right img{
+
+    width:500px;
+
+    border-radius:50%;
+
+}
+.top-menu{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    padding:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.top-menu button{
+
+    background:none;
+
+    border:none;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+.top-menu button:hover{
+
+    color:red;
+
+    transform:scale(1.05);
+
+}
+
+.premium-home{
+
+   background-image:url("./1000358615.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    min-height:100vh;
+
+    margin:20px;
+
+    border-radius:40px;
+
+    overflow:hidden;
+
+    padding:30px;
+
+    position:relative;
+
+}
+/* NAVBAR */
+
+.premium-navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+}
+
+.menu-logo{
+
+    text-align:center;
+
+    font-weight:bold;
+
+}
+
+.menu-icon{
+
+    font-size:35px;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.nav-links button{
+
+    background:none;
+
+    border:none;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+    color:black;
+
+}
+
+.nav-links button:hover{
+
+    color:red;
+
+    transform:scale(1.05);
+
+}
+
+.search-icon{
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+/* HERO */
+
+.premium-hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+}
+
+.premium-left{
+
+    width:45%;
+
+}
+
+.chef-title{
+
+    color:red;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+
+}
+
+.premium-left h1{
+
+    font-size:70px;
+
+    line-height:1.1;
+
+    margin-bottom:40px;
+
+}
+
+.premium-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.view-btn{
+
+    background:black;
+
+    color:white;
+
+    border:none;
+
+    padding:18px 35px;
+
+    border-radius:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.favorite-btn{
+
+    background:black;
+
+    color:white;
+
+    border:none;
+
+    padding:18px 35px;
+
+    border-radius:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+.add-btn{
+
+    background:red;
+
+    color:white;
+
+    border:none;
+
+    padding:18px 40px;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.premium-right{
+
+    width:50%;
+
+    text-align:center;
+
+}
+
+.premium-right img{
+
+    width:100%;
+
+    max-width:600px;
+
+    border-radius:50%;
+
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .premium-hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .premium-left,
+    .premium-right{
+
+        width:100%;
+
+    }
+
+    .premium-left h1{
+
+        font-size:45px;
+
+    }
+
+    .premium-buttons{
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+    .nav-links{
+
+        justify-content:center;
+
+        gap:15px;
+
+    }
+
+}
+.menu-logo{
+
+    position:relative;
+
+}
+
+.dropdown-menu{
+
+    position:absolute;
+
+    top:70px;
+
+    left:0;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:10px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+
+    display:none;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    z-index:1000;
+
+}
+
+.dropdown-menu button{
+
+    background:none;
+
+    border:none;
+
+    padding:12px 20px;
+
+    text-align:left;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    border-radius:10px;
+
+}
+
+.dropdown-menu button:hover{
+
+    background:#f2f2f2;
+
+}
